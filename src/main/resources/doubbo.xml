@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--声明dubbo服务的相关信息-->
+    <dubbo:application name="hello-world-app"/>
+    <!--注册中心-->
+    <dubbo:registry protocol="zookeeper" address="192.168.163.128:2181,192.168.163.129:2181,192.168.163.130:2181"/>
+
+    <!--协议和端口信息-->
+    <dubbo:protocol name="dubbo" port="20881"/>
+
+    <!--dubbo服务接口信息-->
+    <dubbo:service interface="com.baizhi.service.HelloService" ref="helloService"/>
+
+    <!--dubbo服务接口的本地实现类-->
+    <bean id="helloService" class="com.baizhi.service.HelloServiceImpl"/>
+</beans>
